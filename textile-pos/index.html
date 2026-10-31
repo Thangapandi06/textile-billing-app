@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>வெற்றிவேல் கார்மெண்ட்ஸ்</title>
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('tpos-theme')||'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
+<style>
+:root{color-scheme:light;--ink:#17243d;--ink-soft:#243450;--accent:#b94f3f;--accent-dark:#973c31;--bg:#f4f6f9;--card:#fff;--line:#e2e7ef;--mute:#748096;--ok:#18794e;--shadow:0 8px 24px #17243d0a}
+:root[data-theme="dark"]{color-scheme:dark;--ink:#111a2b;--ink-soft:#202d43;--accent:#e27b68;--accent-dark:#c76150;--bg:#111722;--card:#192231;--line:#2c394d;--mute:#a3afc2;--ok:#62c893;--shadow:0 8px 24px #0002}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#202b3e;font:15px "Noto Sans Tamil","Latha",system-ui,sans-serif;display:grid;grid-template-columns:248px minmax(0,1fr);min-height:100vh}
+:root[data-theme="dark"] body{color:#e7edf5}
+nav{background:var(--ink);color:#fff;padding:24px 16px 18px;display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh}
+.brand{display:flex;align-items:center;gap:12px;padding:2px 8px 28px}.brand-mark{display:block;width:58px;height:58px;flex:none;object-fit:cover;object-position:center 35%;border:2px solid #fff;border-radius:15px;background:#fff;box-shadow:0 6px 16px #0004}
+nav h1{font-size:15px;letter-spacing:0;margin:0;color:#fff;line-height:1.55}.brand small{display:block;margin-top:3px;color:#aab7ca;font-size:12px}
+.nav-label{margin:0 10px 7px;color:#8593aa;text-transform:uppercase;letter-spacing:.12em;font-size:10px;font-weight:700}
+nav button{background:none;border:0;color:#c2ccda;text-align:left;padding:11px 12px;border-radius:9px;font:inherit;cursor:pointer;transition:background .18s,color .18s}
+nav button[data-t]::before{display:inline-block;width:25px;color:#9eabc0;font-weight:700}nav button[data-t="bill"]::before{content:"▦"}nav button[data-t="cus"]::before{content:"♙"}nav button[data-t="ret"]::before{content:"↩"}nav button[data-t="itm"]::before{content:"◇"}nav button[data-t="stk"]::before{content:"↓"}nav button[data-t="day"]::before{content:"▤"}
+nav button.on{background:#ffffff18;color:#fff;font-weight:650;box-shadow:inset 3px 0 var(--accent)}nav button.on::before{color:#f18a77}nav button:hover{background:#ffffff12;color:#fff}nav .sp{flex:1}
+nav select{width:100%;margin:4px 0;background:var(--ink-soft);border-color:#3a4960;color:#fff}nav #chpin,nav #themeToggle{font-size:13px;color:#aab7ca;padding:9px 10px}nav #themeToggle{text-align:left}
+main{padding:34px clamp(20px,4vw,56px);min-width:0;max-width:1720px;width:100%;margin:0 auto}
+.tab{display:none}.tab.on{display:block}h2{margin:0 0 20px;font-size:25px;letter-spacing:-.03em;color:inherit}h3{margin:0 0 14px;font-size:16px}
+.page-intro{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin:0 0 23px}.page-intro h2{margin:0 0 5px}.page-intro p{margin:0;color:var(--mute);font-size:14px}
+.runtime-notice{margin:0 0 18px;padding:13px 16px;border:1px solid #d99a37;border-radius:10px;background:#fff5df;color:#654717;line-height:1.5}.runtime-notice[hidden]{display:none}:root[data-theme="dark"] .runtime-notice{background:#3a2d18;border-color:#795c27;color:#f5d99e}
+.eyebrow{display:block;margin-bottom:5px;color:var(--accent);font-size:11px;font-weight:750;letter-spacing:.12em;text-transform:uppercase}
+.badge{display:inline-flex;align-items:center;gap:7px;padding:8px 11px;background:#eaf5ee;color:var(--ok);border-radius:99px;font-size:12px;font-weight:650;white-space:nowrap}.badge::before{content:"";width:7px;height:7px;background:currentColor;border-radius:50%}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:18px;box-shadow:var(--shadow)}
+.bill{display:grid;grid-template-columns:minmax(0,1fr) 370px;gap:18px;align-items:start}@media(max-width:1120px){.bill{grid-template-columns:minmax(0,1fr) 330px}}@media(max-width:920px){.bill{grid-template-columns:1fr}}
+.paybox{position:sticky;top:20px;border-top:3px solid var(--accent);padding:22px}
+.search-title{margin:0 0 5px;font-size:15px}.search-hint{margin:0 0 14px;color:var(--mute);font-size:13px}.search-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px}.search-actions .mute{margin:0}.manual-note{padding:10px 12px;border-radius:8px;background:var(--bg);color:var(--mute);font-size:13px;line-height:1.5}
+.purchase-details{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:20px}.purchase-details label{display:grid;gap:6px;color:var(--field-label);font-size:13px;font-weight:650}.purchase-details input{width:100%}
+#pq{display:block;width:100%;margin-top:6px}
+.purchase-results{margin:7px 0 16px;border:1px solid var(--line);border-radius:9px;overflow:hidden}.purchase-results[hidden]{display:none}.purchase-results button{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:12px 14px}.purchase-results button:last-child{border-bottom:0}.purchase-results button:hover{background:var(--bg)}.purchase-results small{display:block;color:var(--mute);margin-top:3px}
+.purchase-lines{margin-top:18px}.purchase-lines input{width:min(150px,100%)}.purchase-lines td:first-child{font-weight:650}
+input,select{font:inherit;padding:10px 11px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:inherit;max-width:100%;transition:border-color .15s,box-shadow .15s}
+input:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-color:var(--accent);box-shadow:0 0 0 5px #b94f3f25;position:relative;z-index:1}
+button{font:inherit;padding:9px 14px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:inherit;cursor:pointer;transition:background .15s,border-color .15s,transform .15s}
+button:hover{border-color:#b9c3d1}button.pri{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:650}button.pri:hover{background:var(--accent-dark);border-color:var(--accent-dark)}
+#pay:focus-visible,#addmanual:focus-visible{outline-color:#d94f3d;box-shadow:0 0 0 5px #d94f3d55}
+#q{width:100%;font-size:16px;padding:14px 15px;background:var(--bg)}.res{padding:12px;border-bottom:1px solid var(--line);cursor:pointer;border-radius:8px}.res:hover{background:var(--bg)}
+table{width:100%;border-collapse:collapse}th{font-weight:650;color:var(--mute);font-size:12px;letter-spacing:.02em}th,td{padding:11px 8px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}tbody tr:last-child td{border-bottom:0}
+td input{width:82px;padding:8px}.r{text-align:right}.mute{color:var(--mute);font-size:13px}.low{color:var(--accent);font-weight:700}
+.total{font-size:39px;font-weight:800;letter-spacing:-.04em;line-height:1.15;margin:7px 0 18px}.msg{margin:8px 0;color:var(--accent);min-height:1.2em}.ok{color:var(--ok)}
+.pg{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:14px 0}.pg label,form.grid label{display:grid;gap:6px;font-size:13px;color:var(--field-label);font-weight:650}.pg input{width:100%}
+:root{--field-label:#48566c} :root[data-theme="dark"]{--field-label:#c4cede}
+input,select{background:var(--card);color:var(--field-text,#202b3e);border-color:#b9c4d2} :root[data-theme="dark"] input,:root[data-theme="dark"] select{--field-text:#f0f3f8;border-color:#536177}
+input::placeholder{color:#69778d;opacity:1} :root[data-theme="dark"] input::placeholder{color:#aab6c8}
+input[readonly]{background:var(--bg);border-style:dashed;font-weight:700;color:var(--ink)}
+input[readonly]:focus-visible{outline:0;box-shadow:none;border-color:var(--line)}
+form#manualform{width:min(560px,calc(100vw - 42px));max-height:85vh;overflow-y:auto}
+#manualform .pg{grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+#manualform label{font-size:13px;gap:7px}
+#manualform input,#manualform select{min-height:44px;padding:11px 12px;font-size:15px}
+@media(max-width:520px){#manualform .pg{grid-template-columns:1fr}}
+form.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.sc{overflow-x:auto}dialog{border:1px solid var(--line);border-radius:14px;background:var(--card);color:inherit;padding:24px;box-shadow:0 24px 70px #0003}dialog::backdrop{background:#10182788}#pinv{width:100%;margin:8px 0}
+@media(max-width:820px){body{grid-template-columns:1fr}nav{height:auto;position:static;flex-direction:row;flex-wrap:wrap;padding:13px 15px;gap:5px}.brand{width:100%;padding:0 3px 9px}.brand-mark{width:48px;height:48px;border-radius:12px}.nav-label{display:none}nav button[data-t]{padding:9px 11px;font-size:13px}nav button[data-t]::before{width:20px}nav .sp{display:none}nav select{width:auto;max-width:150px;margin:2px 0}nav #chpin{margin-left:auto}main{padding:25px 18px}}
+@media(max-width:560px){nav{gap:4px}nav button[data-t]{padding:8px 9px;font-size:12px}nav button[data-t]::before{width:17px}.page-intro{align-items:flex-start;flex-direction:column}.badge{padding:7px 10px}main{padding:22px 13px}.card{padding:15px;border-radius:12px}.paybox{position:static}.total{font-size:35px}.pg{gap:9px}.pg label,form.grid label{font-size:12px}.bill{gap:10px}}
+</style></head><body>
+<nav><div class="brand"><img class="brand-mark" src="baby-murugan-images-5.png" alt="Murugan shop icon" fetchpriority="high"><div><h1>வெற்றிவேல் கார்மெண்ட்ஸ்</h1><small>வடுகபட்டி</small></div></div><p class="nav-label">Workspace</p>
+<button data-t="bill" class="on">Billing</button><button data-t="cus">Customers</button>
+<button data-t="ret" data-o="1">Returns 🔒</button><button data-t="itm" data-o="1">Items 🔒</button><button data-t="stk" data-o="1">Stock in 🔒</button><button data-t="day" data-o="1">Day close 🔒</button>
+<span class="sp"></span><button type="button" id="themeToggle" aria-pressed="false">Use dark mode</button><select id="cashier" aria-label="Cashier"></select><button id="chpin">Change owner PIN</button></nav>
+<main>
+<p id="runtimeNotice" class="runtime-notice" role="alert" hidden></p>
+<section id="bill" class="tab on"><header class="page-intro"><div><span class="eyebrow">Point of sale</span><h2>New bill</h2><p>Search products by name, add them to the bill, and take payment.</p></div><span class="badge">Counter ready</span></header><div class="bill">
+ <div><div class="card"><h3 class="search-title">Find a product</h3><p class="search-hint">Type a product name in English or Tamil and select it from the list.</p><input id="q" placeholder="Search product name or தமிழ்" autofocus autocomplete="off"><div id="res"></div><div class="search-actions"><p class="mute">Not in the list?</p><button type="button" id="addmanual">Add one-off item</button></div></div>
+  <div class="card sc"><table><thead><tr><th>Item</th><th>Qty</th><th>Rate</th><th>Disc ₹</th><th>Salesman</th><th class="r">Amount</th><th></th></tr></thead><tbody id="cart"></tbody></table>
+  <p id="empty" class="mute">Search for a product above or add a one-off item to start the bill.</p><div id="held"></div></div></div>
+ <div class="card paybox"><div class="mute">Bill total (incl. GST)</div><div class="total" id="tot">₹0.00</div>
+  <div class="pg"><label>Cash ₹<input id="p_CASH" type="number" min="0" step="0.01"></label><label>UPI ₹<input id="p_UPI" type="number" min="0" step="0.01"></label>
+  <label>Card ₹<input id="p_CARD" type="number" min="0" step="0.01"></label><label>Credit (udhaar) ₹<input id="p_CREDIT" type="number" min="0" step="0.01"></label>
+  <label>Customer phone<input id="phone" inputmode="tel"></label><label>Customer name<input id="cname"></label></div>
+  <div class="msg" id="msg" role="alert"></div>
+  <div class="row"><button id="pay" class="pri" style="flex:1">Save &amp; print bill</button><button id="hold">Hold</button><button id="clear">Clear</button></div></div></div></section>
+<section id="cus" class="tab"><h2>Customers &amp; credit</h2><div class="card sc"><table><thead><tr><th>Name</th><th>Phone</th><th class="r">Owes</th><th>Credit invoices &amp; collections</th></tr></thead><tbody id="clist"></tbody></table><div class="msg" id="cmsg"></div></div></section>
+<section id="ret" class="tab"><h2>Returns &amp; credit notes</h2><div class="bill"><div class="card"><h3>Recent invoices</h3><div id="invs"></div></div>
+ <div class="card"><h3 id="rtitle">Pick an invoice</h3><table id="rtab"></table><div class="row"><label>Refund by <select id="rmode"><option>CASH</option><option>UPI</option><option>CARD</option><option>CREDIT</option></select></label>
+ <button id="rgo" class="pri" hidden>Create credit note</button></div><div class="msg" id="rmsg"></div></div></div></section>
+<section id="itm" class="tab"><h2>Items</h2><div class="card"><form id="iform" class="grid"><label>Barcode<input name="barcode" required></label><label>Name (English)<input name="name_en" required></label>
+ <label>Name (தமிழ்)<input name="name_ta"></label><label>HSN<input name="hsn"></label><label>GST %<input name="gst_rate" type="number" value="5" required></label>
+ <label>Unit<select name="unit"><option value="PIECE">Piece</option><option value="METER">Meter</option></select></label><label>Price ₹ (incl. GST)<input name="price" type="number" step="0.01" required></label>
+ <label>Add stock<input name="stock" type="number" step="0.01" value="0"></label><button class="pri" style="align-self:end">Save item</button></form><div class="msg" id="imsg"></div></div>
+ <div class="card sc"><div class="row" style="margin-bottom:8px"><input id="iq" placeholder="Search items" style="flex:1"><label class="mute">Labels per item <input id="copies" type="number" min="1" value="1" style="width:64px"></label></div>
+ <table><thead><tr><th>Item</th><th>Barcode</th><th>GST</th><th>Price</th><th>Cost</th><th>Stock</th><th></th></tr></thead><tbody id="ilist"></tbody></table></div></section>
+<section id="stk" class="tab"><h2>Stock in (purchases)</h2><div class="card">
+ <h3>1. Add items to this purchase</h3><p class="search-hint">Search your Items catalog, then select the correct result to add it below. Items in the catalog are not added automatically.</p>
+ <label for="pq">Find catalog item</label><input id="pq" autocomplete="off" aria-controls="pqres" aria-expanded="false" placeholder="Start typing an item name, e.g. Saree">
+ <div id="pqres" class="purchase-results" role="listbox" hidden></div>
+ <h3>2. Supplier details</h3><div class="purchase-details">
+ <label>Supplier name<input id="sup" placeholder="Enter supplier name" required></label><label>Supplier bill no. (optional)<input id="bno" placeholder="Enter supplier invoice number"></label></div>
+ <div class="sc purchase-lines"><table><thead><tr><th>Item</th><th>Quantity received</th><th>Cost per unit ₹</th><th></th></tr></thead><tbody id="pl"></tbody></table>
+ <p id="plempty" class="mute">No items added yet. Search for an item above and choose it to enter quantity and cost.</p></div>
+ <div class="row" style="margin-top:8px"><button id="psave" class="pri">Save purchase</button><span class="msg" id="pmsg" role="alert"></span></div></div>
+ <div class="card sc"><h3>Recent purchases</h3><table><tbody id="phist"></tbody></table></div></section>
+<section id="day" class="tab"><h2>Day close</h2><div class="card"><div id="dsum"></div><div class="row"><label>Cash counted in drawer ₹ <input id="counted" type="number" step="0.01"></label>
+ <button id="dgo" class="pri">Close day</button></div><div class="msg" id="dmsg"></div></div></section>
+</main>
+<dialog id="manualdialog"><form id="manualform"><h3>Add one-off item</h3><p class="search-hint">For an item that isn't in your catalog. It won't change stock or save as a catalog item.</p><div class="pg">
+ <label>Item name<input name="name" maxlength="200" required autocomplete="off" placeholder="e.g. Cotton fabric"></label>
+ <label>Unit<select name="unit"><option value="PIECE">Piece</option><option value="METER">Meter</option></select></label>
+ <label><span id="manualQtyLabel">Quantity</span><input name="qty" type="number" min="1" step="1" value="1" required placeholder="Enter quantity"></label>
+ <label><span id="manualPriceLabel">Price per unit ₹ (incl. GST)</span><input name="price" type="number" min="0.01" step="0.01" required placeholder="Enter unit price including GST"></label>
+ <label>GST %<input name="gst_rate" type="number" min="0" max="40" step="1" value="5" required placeholder="GST rate"></label>
+ <label>HSN<input name="hsn" maxlength="32" placeholder="Optional"></label></div><p id="manualPriceNote" class="manual-note">Enter the unit price including GST.</p>
+ <div class="msg" id="manualmsg" role="alert"></div><div class="row"><button class="pri">Add to bill</button><button type="button" id="manualcancel">Cancel</button></div></form></dialog>
+<dialog id="pin"><form id="pinform"><h3>Owner PIN</h3><input id="pinv" type="password" inputmode="numeric" autocomplete="off" required>
+ <div class="msg" id="pinmsg"></div><div class="row"><button class="pri">Unlock</button><button type="button" id="pincancel">Cancel</button></div></form></dialog>
+<script>
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s),rs=p=>'₹'+((p||0)/100).toLocaleString('en-IN',{minimumFractionDigits:2}),P=v=>Math.round((parseFloat(v)||0)*100),
+ esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])),say=(s,m,ok)=>{$(s).textContent=m;$(s).classList.toggle('ok',!!ok)};
+function setTheme(theme){const dark=theme==='dark';document.documentElement.dataset.theme=dark?'dark':'light';$('#themeToggle').textContent=dark?'Use light mode':'Use dark mode';$('#themeToggle').setAttribute('aria-pressed',String(dark));try{localStorage.setItem('tpos-theme',dark?'dark':'light')}catch(e){}}
+setTheme(document.documentElement.dataset.theme);
+$('#themeToggle').onclick=()=>setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark');
+let TOKEN='';try{TOKEN=sessionStorage.getItem('tk')||''}catch(e){}
+const api=async(u,b,m)=>{if(location.protocol==='file:')throw new Error('This page was opened as a file. Start the POS with start.bat, then open http://localhost:8080 to save bills.');
+ const o={headers:{'X-Token':TOKEN}};if(b){o.method='POST';o.headers['Content-Type']='application/json';o.body=JSON.stringify(b)}if(m)o.method=m;
+ let r;try{r=await fetch(u,o)}catch(e){throw new Error('Cannot reach the POS server. Start the app with start.bat and open http://localhost:8080.')}
+ const text=await r.text();let j={};
+ if(text){try{j=JSON.parse(text)}catch(e){if(!r.ok)throw new Error(`Request failed (${r.status}): ${text.slice(0,200)}`);throw new Error(`Server returned an invalid response (${r.status}). Please try again.`)}}
+ if(r.status==401&&u!='/api/login'){TOKEN='';throw new Error('Owner PIN needed. Open the tab again to unlock.')}
+ if(!r.ok){const detail=Array.isArray(j.detail)?j.detail.map(x=>{const loc=Array.isArray(x.loc)?x.loc.filter(v=>v!=='body').join(' → '):'';return [loc,x.msg].filter(Boolean).join(': ')}).filter(Boolean).join('; '):j.detail;throw new Error(typeof detail==='string'&&detail?detail:`Request failed (${r.status}). Check the server and try again.`)}return j};
+if(location.protocol==='file:'){$('#runtimeNotice').hidden=false;$('#runtimeNotice').textContent='This page is opened directly from a file, so it cannot save bills. Start the POS with start.bat, then open http://localhost:8080.'}
+let pinDone;const owner=()=>TOKEN?Promise.resolve(true):new Promise(r=>{pinDone=r;$('#pinv').value='';say('#pinmsg','');$('#pin').showModal();$('#pinv').focus()});
+$('#pinform').onsubmit=async e=>{e.preventDefault();try{TOKEN=(await api('/api/login',{pin:$('#pinv').value})).token;try{sessionStorage.setItem('tk',TOKEN)}catch(x){}$('#pin').close();pinDone(true)}catch(x){say('#pinmsg',x.message)}};
+$('#pincancel').onclick=()=>{$('#pin').close();pinDone(false)};$('#pin').oncancel=()=>pinDone(false);
+$('#chpin').onclick=async()=>{if(!await owner())return;const p=prompt('New PIN (4-12 digits)');if(p)try{await api('/api/pin',{pin:p});alert('PIN changed')}catch(e){alert(e.message)}};
+let S;try{S=JSON.parse(localStorage.getItem('pos'))}catch(e){}S=S||{cart:[],held:[],key:crypto.randomUUID()};let EMP=[],ITEMS={};
+const store=()=>{try{localStorage.setItem('pos',JSON.stringify(S))}catch(e){}},line=l=>Math.round(l.price*Math.round(l.qty*1000)/1000)-P(l.disc);
+const LOAD={ret:()=>loadInv(),day:()=>loadDay(),itm:()=>loadItems(),stk:()=>loadPur(),cus:()=>loadCus()};
+async function show(t){$$('.tab').forEach(x=>x.classList.toggle('on',x.id==t));$$('nav [data-t]').forEach(x=>x.classList.toggle('on',x.dataset.t==t));
+ try{await LOAD[t]?.()}catch(e){alert(e.message);show('bill')}}
+$$('nav [data-t]').forEach(b=>b.onclick=async()=>{if(b.dataset.o&&!await owner())return;show(b.dataset.t)});
+function render(){store();$('#cart').innerHTML=S.cart.map((l,i)=>`<tr><td>${esc(l.name_en)}${l.manual?'<br><span class="mute">One-off · not tracked in stock</span>':`<br><span class="mute">${esc(l.name_ta)}</span>`}</td>
+ <td><input type="number" min="0" step="${l.unit=='METER'?0.001:1}" value="${l.qty}" data-k="qty" data-i="${i}"></td><td>${rs(l.price)}<span class="mute">/${l.unit=='METER'?'m':'pc'}${l.unit=='METER'?' incl. GST':''}</span></td>
+ <td><input type="number" min="0" step="0.01" value="${l.disc||0}" data-k="disc" data-i="${i}"></td>
+ <td><select data-k="sm" data-i="${i}">${EMP.map(e=>`<option value="${e.id}" ${e.id==l.sm?'selected':''}>${esc(e.name)}</option>`).join('')}</select></td>
+ <td class="r">${rs(line(l))}</td><td><button data-k="del" data-i="${i}" aria-label="Remove">✕</button></td></tr>`).join('');
+ $('#empty').hidden=S.cart.length>0;$('#tot').textContent=rs(S.cart.reduce((a,l)=>a+line(l),0));
+ $('#held').innerHTML=S.held.length?'<p class="mute">Held bills:</p>'+S.held.map((h,i)=>`<button data-resume="${i}">Resume #${i+1} (${h.cart.length} items)</button> `).join(''):''}
+$('#cart').onchange=e=>{const{k,i}=e.target.dataset,l=S.cart[i];if(k=='qty')l.qty=parseFloat(e.target.value)||0;if(k=='disc')l.disc=parseFloat(e.target.value)||0;if(k=='sm')l.sm=+e.target.value;render()};
+$('#cart').onclick=e=>{if(e.target.dataset.k=='del'){S.cart.splice(e.target.dataset.i,1);render()}};
+$('#held').onclick=e=>{const i=e.target.dataset.resume;if(i==null)return;if(S.cart.length)S.held.push({cart:S.cart});S.cart=S.held.splice(i,1)[0].cart;render()};
+$('#hold').onclick=()=>{if(S.cart.length){S.held.push({cart:S.cart});S.cart=[];S.key=crypto.randomUUID();render()}};
+$('#clear').onclick=()=>{if(S.cart.length&&confirm('Clear this bill?')){S.cart=[];S.key=crypto.randomUUID();render()}};
+function add(it){const x=S.cart.find(l=>l.item_id==it.id);if(x)x.qty+=1;else S.cart.push({item_id:it.id,name_en:it.name_en,name_ta:it.name_ta,unit:it.unit,price:it.price,qty:1,disc:0,sm:EMP.find(e=>e.role=='SALES')?.id||EMP[0]?.id});
+ $('#q').value='';$('#res').innerHTML='';render();$('#q').focus()}
+let list=[];async function find(enter){const q=$('#q').value.trim();if(!q){$('#res').innerHTML='';return}list=await api('/api/items?q='+encodeURIComponent(q));
+ if(enter&&list.length==1)return add(list[0]);
+ $('#res').innerHTML=list.map((it,i)=>`<div class="res" data-add="${i}"><b>${esc(it.name_en)}</b> ${esc(it.name_ta)}<br><span class="mute">${rs(it.price)}/${it.unit.toLowerCase()} · stock ${it.stock_milli/1000}</span></div>`).join('')||'<p class="mute">No matching catalog items. Add a one-off item or ask the owner to add it to Items.</p>'}
+$('#q').oninput=()=>find(false).catch(e=>say('#msg',e.message));$('#q').onkeydown=e=>{if(e.key=='Enter')find(true).catch(x=>say('#msg',x.message))};$('#res').onclick=e=>{const d=e.target.closest('[data-add]');if(d)add(list[d.dataset.add])};
+const manualDialog=$('#manualdialog'),manualForm=$('#manualform');
+manualForm.elements.unit.onchange=()=>{const meter=manualForm.elements.unit.value==='METER',qty=manualForm.elements.qty,price=manualForm.elements.price;
+ $('#manualQtyLabel').textContent=meter?'Measured length (m)':'Quantity';$('#manualPriceLabel').textContent=meter?'Price per meter ₹ (incl. GST)':'Price per unit ₹ (incl. GST)';$('#manualPriceNote').textContent=meter?'Enter the selling price per meter, including GST.':'Enter the selling price per unit, including GST.';
+ qty.min=meter?'0.001':'1';qty.step=meter?'0.001':'1';if(!qty.value||Number(qty.value)<Number(qty.min)||(!meter&&!Number.isInteger(Number(qty.value))))qty.value='1';price.readOnly=false};
+$('#addmanual').onclick=()=>{manualForm.reset();manualForm.elements.qty.value='1';manualForm.elements.gst_rate.value='5';manualForm.elements.unit.onchange();say('#manualmsg','');manualDialog.showModal();manualForm.elements.name.focus()};
+$('#manualcancel').onclick=()=>manualDialog.close();
+manualForm.onsubmit=e=>{e.preventDefault();const f=Object.fromEntries(new FormData(manualForm)),name=f.name.trim(),price=P(f.price),qty=parseFloat(f.qty),gst=Number(f.gst_rate);
+ const meter=f.unit==='METER',validQty=meter?Math.abs(qty*1000-Math.round(qty*1000))<1e-8:Number.isInteger(qty);
+ if(!name||price<=0||!Number.isFinite(qty)||qty<=0||!validQty||!Number.isInteger(gst)||gst<0||gst>40){say('#manualmsg','Enter a valid name, quantity, price and GST rate.');return}
+ S.cart.push({manual:true,name_en:name,name_ta:'',hsn:f.hsn.trim(),gst_rate:gst,unit:f.unit,price,meter_price:meter?price:null,qty,disc:0,sm:EMP.find(e=>e.role=='SALES')?.id||EMP[0]?.id});
+ manualDialog.close();$('#q').value='';$('#res').innerHTML='';render();$('#q').focus()};
+$('#pay').onclick=async()=>{say('#msg','');if(!S.cart.length)return;const total=S.cart.reduce((a,l)=>a+line(l),0);
+ let p={CASH:P($('#p_CASH').value),UPI:P($('#p_UPI').value),CARD:P($('#p_CARD').value),CREDIT:P($('#p_CREDIT').value)};const paid=p.CASH+p.UPI+p.CARD+p.CREDIT;if(!paid)p.CASH=total;else if(!p.CASH&&paid<total)p.CASH=total-paid;
+ const payments=Object.entries(p).filter(([,v])=>v>0).map(([mode,amount_paise])=>({mode,amount_paise}));
+ try{const r=await api('/api/checkout',{idempotency_key:S.key,cashier_id:+$('#cashier').value,customer_phone:$('#phone').value||null,customer_name:$('#cname').value||null,payments,
+  items:S.cart.map(l=>l.manual?({manual_name:l.name_en,manual_hsn:l.hsn,manual_price_paise:l.price,manual_gst_rate:l.gst_rate,manual_unit:l.unit,manual_meter_price_paise:l.meter_price,qty_milli:Math.round(l.qty*1000),salesman_id:l.sm,discount_paise:P(l.disc)}):({item_id:l.item_id,qty_milli:Math.round(l.qty*1000),salesman_id:l.sm,discount_paise:P(l.disc)}))});
+  S.cart=[];S.key=crypto.randomUUID();['#p_CASH','#p_UPI','#p_CARD','#p_CREDIT','#phone','#cname'].forEach(s=>$(s).value='');render();window.open('/receipt/'+r.invoice_id,'_blank')}catch(e){say('#msg',e.message)}};
+async function loadCus(){const v=await api('/api/customers');$('#clist').innerHTML=v.map(c=>`<tr><td>${esc(c.name)||'—'}</td><td>${esc(c.phone)}</td><td class="r"><b class="${c.balance>0?'low':''}">${rs(c.balance)}</b></td>
+ <td>${c.credit_invoices.length?`<details><summary>${c.credit_invoices.length} open credit invoice${c.credit_invoices.length===1?'':'s'}</summary><div class="sc"><table><thead><tr><th>Invoice no.</th><th>Date</th><th class="r">Due ₹</th><th>Collect ₹</th><th>Mode</th><th></th></tr></thead><tbody>${c.credit_invoices.map(i=>`<tr><td>${esc(i.number)}</td><td>${esc(i.ts)}</td><td class="r">${rs(i.balance)}</td><td><input type="number" min="0.01" max="${i.balance/100}" step="0.01" id="s${c.id}_${i.invoice_id}" aria-label="Amount for invoice ${esc(i.number)}"></td><td><select id="m${c.id}_${i.invoice_id}" aria-label="Payment mode for invoice ${esc(i.number)}"><option>CASH</option><option>UPI</option><option>CARD</option></select></td><td><button data-s="${c.id}" data-invoice="${i.invoice_id}">Collect</button></td></tr>`).join('')}</tbody></table></div></details>`:'<span class="mute">No open credit invoices</span>'}</td></tr>`).join('')||'<tr><td colspan=4 class="mute">No credit customers yet.</td></tr>'}
+$('#clist').onclick=async e=>{const id=e.target.dataset.s,invoice=e.target.dataset.invoice;if(!id||!invoice)return;try{await api(`/api/customers/${id}/settle`,{invoice_id:+invoice,amount_paise:P($('#s'+id+'_'+invoice).value),mode:$('#m'+id+'_'+invoice).value});say('#cmsg','Payment recorded against invoice',1);await loadCus()}catch(x){say('#cmsg',x.message)}};
+let cur=null;async function loadInv(){const v=await api('/api/invoices?limit=30');$('#invs').innerHTML=v.filter(i=>i.kind=='SALE').map(i=>`<div class="res" data-inv="${i.id}"><b>${i.number}</b> ${rs(i.total)}<br><span class="mute">${i.ts}</span></div>`).join('')}
+$('#invs').onclick=async e=>{const d=e.target.closest('[data-inv]');if(!d)return;cur=await api('/api/invoices/'+d.dataset.inv);$('#rtitle').textContent=cur.number;$('#rgo').hidden=false;
+ $('#rtab').innerHTML='<tr><th>Item</th><th>Sold</th><th>Returned</th><th>Return qty</th></tr>'+cur.lines.map(l=>`<tr><td>${esc(l.name_en)}</td><td>${l.qty_milli/1000}</td><td>${l.returned_milli/1000}</td><td><input type="number" min="0" step="${l.unit=='METER'?0.001:1}" data-line="${l.id}" value="0"></td></tr>`).join('')};
+$('#rgo').onclick=async()=>{const lines=[...$$('[data-line]')].map(i=>({line_id:+i.dataset.line,qty_milli:Math.round(i.value*1000)})).filter(l=>l.qty_milli>0);if(!lines.length)return;
+ try{const r=await api('/api/return',{idempotency_key:crypto.randomUUID(),invoice_id:cur.id,cashier_id:+$('#cashier').value,lines,refund_mode:$('#rmode').value});window.open('/receipt/'+r.invoice_id,'_blank');say('#rmsg','');$('#rtab').innerHTML='';$('#rgo').hidden=true}catch(e){say('#rmsg',e.message)}};
+async function loadItems(){const v=await api('/api/items/all?q='+encodeURIComponent($('#iq').value));ITEMS=Object.fromEntries(v.map(i=>[i.id,i]));
+ $('#ilist').innerHTML=v.map(i=>`<tr><td>${esc(i.name_en)}<br><span class="mute">${esc(i.name_ta)}</span></td><td>${esc(i.barcode)}</td><td>${i.gst_rate}%</td><td>${rs(i.price)}</td><td>${rs(i.cost)}</td>
+ <td class="${i.stock_milli<=0?'low':''}">${i.stock_milli/1000} ${i.unit=='METER'?'m':''}</td><td><button data-e="${i.id}">Edit</button> <button data-l="${i.id}">Label</button> <button data-d="${i.id}">Delete</button></td></tr>`).join('')}
+$('#iq').oninput=()=>loadItems().catch(()=>{});
+$('#ilist').onclick=async e=>{const{e:ed,l,d}=e.target.dataset,f=$('#iform').elements;
+ if(ed){const i=ITEMS[ed];['barcode','name_en','name_ta','hsn','gst_rate','unit'].forEach(k=>f[k].value=i[k]);f.price.value=i.price/100;f.stock.value=0;scrollTo(0,0)}
+ if(l)window.open(`/labels?ids=${l}&copies=${$('#copies').value||1}`,'_blank');
+ if(d&&confirm('Delete this item? Old bills keep it.'))try{await api('/api/items/'+d,null,'DELETE');loadItems()}catch(x){say('#imsg',x.message)}};
+$('#iform').onsubmit=async e=>{e.preventDefault();const f=Object.fromEntries(new FormData(e.target));
+ try{await api('/api/items',{barcode:f.barcode,name_en:f.name_en,name_ta:f.name_ta,hsn:f.hsn,gst_rate:+f.gst_rate,unit:f.unit,price_paise:P(f.price),add_stock_milli:Math.round(f.stock*1000)});
+  say('#imsg','Saved',1);e.target.reset();loadItems()}catch(x){say('#imsg',x.message)}};
+let PL=[],purchaseMatches=[],purchaseSearch=0;
+function drawPL(){$('#pl').innerHTML=PL.map((l,i)=>`<tr><td>${esc(l.name)}<br><span class="mute">${l.unit==='METER'?'Meter':'Piece'}</span></td>
+ <td><input type="number" min="${l.unit==='METER'?'0.001':'1'}" step="${l.unit==='METER'?'0.001':'1'}" value="${l.qty}" aria-label="Quantity received for ${esc(l.name)}" placeholder="Enter quantity" data-pi="${i}" data-f="qty"></td>
+ <td><input type="number" min="0" step="0.01" value="${l.cost}" aria-label="Cost per ${l.unit==='METER'?'meter':'piece'} for ${esc(l.name)}" placeholder="Enter unit cost" data-pi="${i}" data-f="cost"></td>
+ <td><button type="button" data-px="${i}" aria-label="Remove ${esc(l.name)} from purchase">Remove</button></td></tr>`).join('');$('#plempty').hidden=PL.length>0}
+function addPurchaseItem(item){PL.push({item_id:item.id,name:item.name_en,unit:item.unit,qty:1,cost:(item.cost||0)/100});drawPL();$('#pq').value='';purchaseMatches=[];$('#pqres').innerHTML='';$('#pqres').hidden=true;$('#pq').setAttribute('aria-expanded','false');say('#pmsg','');const input=$(`[data-pi="${PL.length-1}"][data-f="qty"]`);input.focus();input.select()}
+async function findPurchaseItems(){const q=$('#pq').value.trim(),search=++purchaseSearch,results=$('#pqres');purchaseMatches=[];results.innerHTML='';results.hidden=true;$('#pq').setAttribute('aria-expanded','false');if(!q)return;
+ const matches=await api('/api/items?q='+encodeURIComponent(q));if(search!==purchaseSearch)return;purchaseMatches=matches;
+ if(!matches.length){results.innerHTML='<div class="mute" style="padding:12px">No matching catalog items. Add the item in Items first.</div>';results.hidden=false;return}
+ results.innerHTML=matches.map((item,i)=>`<button type="button" role="option" aria-selected="false" data-padd="${i}">${esc(item.name_en)}<small>${item.unit==='METER'?'Meter':'Piece'} · stock ${item.stock_milli/1000} · Barcode ${esc(item.barcode||'—')}</small></button>`).join('');results.hidden=false;$('#pq').setAttribute('aria-expanded','true')}
+async function loadPur(){const v=await api('/api/purchases');$('#phist').innerHTML=v.map(p=>`<tr><td>${p.ts}</td><td>${esc(p.supplier)}</td><td>${esc(p.bill_no)}</td><td class="r">${rs(p.total)}</td></tr>`).join('');drawPL()}
+$('#pq').oninput=()=>findPurchaseItems().catch(e=>say('#pmsg',e.message));
+$('#pq').onkeydown=async e=>{if(e.key!=='Enter')return;e.preventDefault();if(purchaseMatches.length===1)addPurchaseItem(purchaseMatches[0]);else if(purchaseMatches.length>1)$('#pqres button')?.focus();else findPurchaseItems().catch(x=>say('#pmsg',x.message))};
+$('#pqres').onclick=e=>{const option=e.target.closest('[data-padd]');if(option)addPurchaseItem(purchaseMatches[Number(option.dataset.padd)])};
+$('#pl').onchange=e=>{const{pi,f}=e.target.dataset;if(f&&PL[pi])PL[pi][f]=parseFloat(e.target.value)};
+$('#pl').onclick=e=>{if(e.target.dataset.px!=null){PL.splice(Number(e.target.dataset.px),1);drawPL()}};
+$('#psave').onclick=async()=>{const supplier=$('#sup').value.trim();if(!supplier){say('#pmsg','Enter the supplier name.');$('#sup').focus();return}
+ if(!PL.length){say('#pmsg','No purchase items added. Search above and select a catalog item first.');$('#pq').focus();return}
+ if(PL.some(l=>!Number.isFinite(l.qty)||l.qty<=0||(l.unit==='PIECE'&&!Number.isInteger(l.qty))||!Number.isFinite(l.cost)||l.cost<0)){say('#pmsg','Check each item: quantity must be valid and cost per unit cannot be negative.');return}
+ const button=$('#psave');button.disabled=true;
+ try{await api('/api/purchases',{supplier,bill_no:$('#bno').value.trim(),lines:PL.map(l=>({item_id:l.item_id,qty_milli:Math.round(l.qty*1000),cost_paise:P(l.cost)}))});PL=[];$('#sup').value='';$('#bno').value='';$('#pq').value='';say('#pmsg','Stock updated',1);await loadPur()}catch(x){say('#pmsg',x.message)}finally{button.disabled=false}};
+async function loadDay(){const d=await api('/api/dayclose');$('#dsum').innerHTML=`<h3>${d.day}</h3>`+Object.entries(d.by_mode).map(([k,v])=>`<p>${k}: <b>${rs(v)}</b></p>`).join('')+
+ Object.entries(d.collected||{}).map(([k,v])=>`<p>Credit collected (${k}): <b>${rs(v)}</b></p>`).join('')+
+ '<table><tr><th>GST</th><th>Taxable</th><th>CGST</th><th>SGST</th><th>IGST</th><th>Total</th></tr>'+d.gst.map(g=>`<tr><td>${g.gst_rate}%</td><td>${rs(g.taxable)}</td><td>${rs(g.cgst)}</td><td>${rs(g.sgst)}</td><td>${rs(g.igst)}</td><td>${rs(g.total)}</td></tr>`).join('')+'</table>'+
+ `<p>Expected cash in drawer: <b>${rs(d.expected_cash)}</b></p>`+(d.closed?`<p class="mute">Closed ${d.closed.ts}: counted ${rs(d.closed.counted_cash)}, difference ${rs(d.closed.diff)}</p>`:'')}
+$('#dgo').onclick=async()=>{try{await api('/api/dayclose',{counted_cash_paise:P($('#counted').value)});loadDay();say('#dmsg','')}catch(e){say('#dmsg',e.message)}};
+(async()=>{try{EMP=await api('/api/employees');$('#cashier').innerHTML=EMP.filter(e=>e.role=='CASHIER').map(e=>`<option value="${e.id}">${esc(e.name)}</option>`).join('');render()}catch(e){if(location.protocol!=='file:')console.error('Could not load POS employees:',e)}})();
+</script></body></html>

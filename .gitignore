@@ -1,0 +1,5 @@
+__pycache__/
+*.py[cod]
+shop.db
+shop.db-shm
+shop.db-wal
